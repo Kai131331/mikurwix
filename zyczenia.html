@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dla Ciebie, bracie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0b17;--ink:#f6eef4;--dim:#b3a6b8;--rose:#ff4f7b;--gold:#ffc65c;--mint:#7be0c3;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-behavior:smooth}
+body{margin:0;min-height:100%;background:radial-gradient(120% 60% at 50% 0%,#241335 0%,var(--bg) 60%) fixed;color:var(--ink);
+font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
+.heart{width:min(62vw,300px);height:auto;overflow:visible;filter:drop-shadow(0 0 28px rgba(255,79,123,.45))}
+.heart path{fill:var(--rose);fill-opacity:0;stroke:var(--rose);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;
+stroke-dasharray:1;stroke-dashoffset:1;animation:draw 2.4s cubic-bezier(.6,.1,.3,1) .3s forwards,fill 1s ease 2.5s forwards}
+.heart.beat{animation:beat 1.4s ease-in-out infinite;transform-origin:50% 55%}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fill{to{fill-opacity:1}}
+@keyframes beat{0%,60%,100%{transform:scale(1)}15%{transform:scale(1.07)}30%{transform:scale(.98)}45%{transform:scale(1.04)}}
+h1{font-size:clamp(2.2rem,9vw,4.4rem);line-height:1.05;font-weight:800;margin:32px 0 8px;letter-spacing:-.02em;opacity:0;transform:translateY(12px);transition:opacity .9s,transform .9s}
+.sub{color:var(--dim);margin:0;font-size:1.05rem;opacity:0;transition:opacity .9s .25s}
+.shown{opacity:1!important;transform:none!important}
+.hint{margin-top:44px;color:var(--dim);font-size:.9rem;opacity:0;transition:opacity 1s .6s}
+.hint i{display:block;margin:8px auto 0;width:1px;height:34px;background:linear-gradient(var(--gold),transparent)}
+main{max-width:640px;margin:0 auto;padding:12vh 26px 10vh}
+.w{margin:0 0 15vh;opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}
+.w.in{opacity:1;transform:none}
+.w p{margin:0;font-size:clamp(1.5rem,6vw,2.1rem);line-height:1.25;font-weight:600;letter-spacing:-.01em}
+.w small{display:block;margin-top:10px;color:var(--dim);font-size:1rem;line-height:1.5;font-weight:400;max-width:34ch}
+.w:nth-child(even){text-align:right}.w:nth-child(even) small{margin-left:auto}
+.w:nth-child(3n+1) p{color:var(--gold)}.w:nth-child(3n+2) p{color:var(--ink)}.w:nth-child(3n) p{color:var(--mint)}
+.end{text-align:center;padding:0 24px 14vh}
+button{font:inherit;font-weight:600;color:#1a0f1f;background:var(--gold);border:0;border-radius:999px;padding:16px 30px;font-size:1.05rem;cursor:pointer;
+box-shadow:0 8px 30px rgba(255,198,92,.25);transition:transform .15s}
+button:active{transform:scale(.95)}
+button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.end p{color:var(--dim);margin:28px 0 0}
+@media (prefers-reduced-motion:reduce){.heart path{animation:none;stroke-dashoffset:0;fill-opacity:1}.heart.beat{animation:none}.w,h1,.sub,.hint{transition:none}}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<section class="hero" id="top">
+  <svg class="heart" id="heart" viewBox="0 0 100 90" aria-hidden="true">
+    <path pathLength="1" d="M50 85 C20 62 5 45 5 27 C5 14 15 5 27 5 C37 5 45 11 50 19 C55 11 63 5 73 5 C85 5 95 14 95 27 C95 45 80 62 50 85 Z"/>
+  </svg>
+  <h1 id="title">Wszystkiego najlepszego!</h1>
+  <p class="sub" id="sub">Od twojego najlepszego (bo jedynego hehe) brata.</p>
+  <div class="hint" id="hint">przewiń w dół<i></i></div>
+</section>
+
+<main>
+  <div class="w"><p>Dużo zdrowia.</p><small>Żebyś miał siłę na wszystkie plany, które masz w głowie, i na te, o których jeszcze nie wiesz.</small></div>
+  <div class="w"><p>Spełnienia marzeń.</p><small>Tych dużych i tych małych. Najlepiej po kolei, ale może być też wszystkich naraz.</small></div>
+  <div class="w"><p>Ludzi, którzy są obok.</p><small>Takich, z którymi można pomilczeć i takich, z którymi nie da się przestać gadać.</small></div>
+  <div class="w"><p>Samych sukcesów.</p><small>Więcej wygranych niż porażek, a po porażkach szybki powrót.</small></div>
+</main>
+
+<div class="end">
+  <button id="more">Więcej konfetti!!</button>
+  <p>Z całego serca. Twój brat</p>
+</div>
+
+<script>
+(function(){
+  var cv=document.getElementById('c'),cx=cv.getContext('2d'),P=[],dpr=Math.min(window.devicePixelRatio||1,2),W,H,run=false;
+  var cols=['#ff4f7b','#ffc65c','#7be0c3','#b79cff','#ffffff'];
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
+  size();addEventListener('resize',size);
+  function burst(x,y,n){
+    if(reduce)return;
+    for(var i=0;i<n;i++){var a=Math.random()*Math.PI*2,s=4+Math.random()*9;
+      P.push({x:x,y:y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-6,w:5+Math.random()*7,h:3+Math.random()*5,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:cols[i%cols.length],life:1});}
+    if(!run){run=true;requestAnimationFrame(tick)}
+  }
+  function tick(){
+    cx.clearRect(0,0,W,H);
+    P=P.filter(function(p){return p.life>0&&p.y<H+40});
+    P.forEach(function(p){p.vy+=.28;p.vx*=.985;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.life-=.004;
+      cx.save();cx.globalAlpha=Math.max(p.life,0);cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore()});
+    if(P.length)requestAnimationFrame(tick);else{run=false;cx.clearRect(0,0,W,H)}
+  }
+  // imię z linku: ?imie=Kuba
+  var m=location.search.match(/imie=([^&]+)/);
+  if(m){var n=decodeURIComponent(m[1]).slice(0,30).replace(/[<>]/g,'');
+    document.getElementById('title').textContent='Wszystkiego najlepszego, '+n+'!';document.title='Dla Ciebie, '+n}
+  var delay=reduce?200:2900;
+  setTimeout(function(){
+    document.getElementById('heart').classList.add('beat');
+    document.getElementById('title').classList.add('shown');
+    document.getElementById('sub').classList.add('shown');
+    document.getElementById('hint').classList.add('shown');
+    var r=document.getElementById('heart').getBoundingClientRect();
+    burst(r.left+r.width/2,r.top+r.height/2,110);
+    setTimeout(function(){burst(W*.15,H*.7,60);burst(W*.85,H*.7,60)},500);
+  },delay);
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.35});
+  document.querySelectorAll('.w').forEach(function(el){io.observe(el)});
+  document.getElementById('more').addEventListener('click',function(e){
+    var r=e.target.getBoundingClientRect();burst(r.left+r.width/2,r.top,140);burst(W*.2,H*.8,50);burst(W*.8,H*.8,50)});
+  document.getElementById('heart').addEventListener('click',function(e){burst(e.clientX,e.clientY,70)});
+  addEventListener('pointerdown',function(e){if(e.target.closest('button'))return;burst(e.clientX,e.clientY,18)});
+})();
+</script>
+</body>
+</html>
