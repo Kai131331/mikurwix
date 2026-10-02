@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dla Ciebie, bracie</title>
+<title>STO LAT MIKURWIX</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
 <style>
@@ -86,7 +86,7 @@ button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
       cx.save();cx.globalAlpha=Math.max(p.life,0);cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore()});
     if(P.length)requestAnimationFrame(tick);else{run=false;cx.clearRect(0,0,W,H)}
   }
-  // imię z linku: ?imie=Kuba
+
   var m=location.search.match(/imie=([^&]+)/);
   if(m){var n=decodeURIComponent(m[1]).slice(0,30).replace(/[<>]/g,'');
     document.getElementById('title').textContent='Wszystkiego najlepszego, '+n+'!';document.title='Dla Ciebie, '+n}
